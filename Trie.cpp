@@ -24,34 +24,8 @@ class Trie{
         Trie(){
             root = new TrieNode('\0');
         }
-        
-        void insertUtil(TrieNode* root,string word){
-            // base case
-            if(word.length() == 0){
-                root->isTerminal = true;
-                return ;
-            }
 
-            int index = word[0]-'A';
-            TrieNode* child;
-
-            //Present Case
-            if(root->children[index]!=NULL){
-                child = root->children[index];
-            }
-            else{
-                // absent case
-                child = new TrieNode(word[0]);
-                root->children[index] = child;
-            }
-            insertUtil(child,word.substr(1));
-        }
-
-        void insertWordRecr(string word){
-            insertUtil(root,word);
-        }
-
-        void insertWordIter(string word){
+        void insert(string word){
             TrieNode* curr = root;
             for(char c:word){
                 int index = c-'a';
@@ -63,7 +37,6 @@ class Trie{
             }
             curr->isTerminal = true;
         }
-
 
         bool searchUtil(TrieNode* root,string word){
             if(word.length() == 0){
