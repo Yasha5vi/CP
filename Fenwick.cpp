@@ -2,6 +2,7 @@ class FenwickTree {
 public:
     vector<long long> fen;
     int n; 
+    FenwickTree(){}
     FenwickTree(int size) {
         n = size;
         fen.assign(n+1,0);;
@@ -34,6 +35,7 @@ class FenwickTree {
 public:
     vector<vector<long long>> fen; 
     int n,m; 
+    FenwickTree(){}
     FenwickTree(int r,int c) {
         n = r;
         m = c;
@@ -46,7 +48,7 @@ public:
             }
         }
     }
-    void build(const vector<vector<long long>>& matrix) {
+    void build(vector<vector<long long>>& matrix) {
         for (int i = 1; i <= n; ++i) {
             for(int j = 1; j <= m; ++j) {
                 update(i, j, matrix[i - 1][j - 1]); 
