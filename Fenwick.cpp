@@ -7,7 +7,7 @@ public:
         n = size;
         fen.assign(n+1,0);;
     }
-    void build(vector<ling long>& arr) {
+    void build(vector<long long>& arr) {
         for (int i = 0; i < n; i++) {
             update(i + 1, arr[i]);
         }
