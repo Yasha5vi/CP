@@ -41,7 +41,7 @@ class Trie{
         bool search(string word) {
             TrieNode* curr = root;
             for (char c : word) {
-                int index = c - 'A';
+                int index = c - 'a';
                 if (!curr->children[index]) {
                     return false; 
                 }
@@ -58,7 +58,7 @@ class Trie{
                 else root->isTerminal = false;
                 return;
             }
-            int index = word[0]-'A';
+            int index = word[0]-'a';
             TrieNode* child;
             if(root->children[index] != NULL){
                 child = root->children[index];
