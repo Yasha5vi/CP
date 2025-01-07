@@ -14,23 +14,23 @@ public:
     Trie() { root = new TrieNode('\0'); }
 
     void insert(string word) {
-        TrieNode* curr = root;
+        TrieNode* cur = root;
         for (char c : word) {
-            if (curr->children.find(c) == curr->children.end()) {
-                curr->children[c] = new TrieNode(c);
+            if (cur->children.find(c) == cur->children.end()) {
+                cur->children[c] = new TrieNode(c);
             }
-            curr = curr->children[c];
+            cur = cur->children[c];
         }
-        curr->isTerminal = true;
+        cur->isTerminal = true;
     }
 
     bool search(string word) {
-        TrieNode* curr = root;
+        TrieNode* cur = root;
         for (char c : word) {
-            if (curr->children.find(c) == curr->children.end()) return false;
-            curr = curr->children[c];
+            if (cur->children.find(c) == cur->children.end()) return false;
+            cur = cur->children[c];
         }
-        return curr->isTerminal;
+        return cur->isTerminal;
     }
 
     bool remove(string word) { return removeUtil(root, word, 0); }
