@@ -38,23 +38,16 @@ class Trie{
             curr->isTerminal = true;
         }
 
-        bool searchUtil(TrieNode* root,string word){
-            if(word.length() == 0){
-                return root->isTerminal;
+        bool search(string word) {
+            TrieNode* curr = root;
+            for (char c : word) {
+                int index = c - 'A';
+                if (!curr->children[index]) {
+                    return false; 
+                }
+                curr = curr->children[index];
             }
-            int index = word[0]-'A';
-            TrieNode* child;
-            //present
-            if(root->children[index] != NULL){
-                child = root->children[index];
-            }
-            else{
-                return false;  
-            }
-            return searchUtil(child,word.substr(1));
-        }
-        bool search(string word){
-            return searchUtil(root,word);
+            return curr->isTerminal; 
         }
 
 
