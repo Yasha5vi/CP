@@ -16,7 +16,7 @@ public:
     void insert(string word) {
         TrieNode* cur = root;
         for (char c : word) {
-            if (cur->children.find(c) == cur->children.end()) {
+            if (!cur->children.count(c)) {
                 cur->children[c] = new TrieNode(c);
             }
             cur = cur->children[c];
@@ -27,7 +27,7 @@ public:
     bool search(string word) {
         TrieNode* cur = root;
         for (char c : word) {
-            if (cur->children.find(c) == cur->children.end()) return false;
+            if (!cur->children.count(c)) return false;
             cur = cur->children[c];
         }
         return cur->isTerminal;
@@ -43,7 +43,7 @@ private:
             return node->children.empty();
         }
         char c = word[depth];
-        if (node->children.find(c) == node->children.end()) return false;
+        if (!cur->children.count(c)) return false;
         bool shouldDeleteChild = removeUtil(node->children[c], word, depth + 1);
         if (shouldDeleteChild) {
             delete node->children[c];
