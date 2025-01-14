@@ -1,9 +1,9 @@
 class TrieNode {
 public:
     char data = '\0';
-    unordered_map<char, TrieNode*> children;
+    TrieNode* children[26] = {NULL};
     bool isTerminal = false;
-    int freq = 1;  // You can increment this in the future if needed
+    int freq = 1;  
 };
 
 class Trie {
@@ -15,12 +15,13 @@ public:
     void insert(string word) {
         TrieNode* cur = root;
         for (char c : word) {
-            if (!cur->children.count(c)) {
-                cur->children[c] = new TrieNode();
-                cur = cur->children[c];
+            int idx = c-'a';
+            if (!cur->children[idx]) {
+                cur->children[idx] = new TrieNode();
+                cur = cur->children[idx];
             } else {
-                cur = cur->children[c];
-                cur->freq++;  // Increment frequency for the given path
+                cur = cur->children[idx];
+                cur->freq++;  
             }
         }
         cur->isTerminal = true;
@@ -29,8 +30,9 @@ public:
     bool search(string word) {
         TrieNode* cur = root;
         for (char c : word) {
-            if (!cur->children.count(c)) return false;
-            cur = cur->children[c];
+            int idx = c-'a';
+            if (!cur->children[idx]) return false;
+            cur = cur->children[idx];
         }
         return cur->isTerminal;
     }
@@ -48,12 +50,13 @@ private:
         }
 
         char c = word[depth];
-        if (!node->children.count(c)) return false;
+        int idx = c-'a';
+        if (!node->children[idx]) return false;
 
         bool shouldDeleteChild = removeUtil(node->children[c], word, depth + 1);
         if (shouldDeleteChild) {
             delete node->children[c];
-            node->children.erase(c);
+            node->children[c];
         }
 
         return node->children.empty() && !node->isTerminal;
