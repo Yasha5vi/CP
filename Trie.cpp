@@ -53,10 +53,10 @@ private:
         int idx = c-'a';
         if (!node->children[idx]) return false;
 
-        bool shouldDeleteChild = removeUtil(node->children[c], word, depth + 1);
+        bool shouldDeleteChild = removeUtil(node->children[idx], word, depth + 1);
         if (shouldDeleteChild) {
-            delete node->children[c];
-            node->children[c];
+            delete node->children[idx];
+            node->children[idx];
         }
 
         return node->children.empty() && !node->isTerminal;
