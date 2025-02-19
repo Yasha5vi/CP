@@ -56,7 +56,7 @@ private:
         bool shouldDeleteChild = removeUtil(node->children[idx], word, depth + 1);
         if (shouldDeleteChild) {
             delete node->children[idx];
-            node->children[idx];
+            node->children[idx] = NULL;
         }
 
         return node->children.empty() && !node->isTerminal;
