@@ -1,11 +1,11 @@
 class Disjoint{
     public:
-    
-    vi parent,size;
-    
+    vector<int> parent,size;
+    int count;
     Disjoint(int n){
-        parent.resize(n+1);
-        size.resize(n+1,1);
+        count = n;
+        parent.resize(n);
+        size.resize(n,1);
         iota(parent.begin(),parent.end(),0);
     }
     
@@ -28,5 +28,6 @@ class Disjoint{
             size[ulp]+=size[vlp];
             parent[vlp] = ulp;
         }
+        count--;
     }
 };
